@@ -1,0 +1,248 @@
+
+<div class="container">
+  <div class="nav">
+<img style=margin:20px; src="../../assets/images/amal.png" alt="logo">
+
+    <mat-list class="matlist">
+         <mat-list-item>
+        <mat-icon mat-list-icon>map</mat-icon>
+        <a class="ha" routerLink="./weather-map">Maps</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>weather</mat-icon>
+        <h4 class="ha">Forecasts</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>favorites</mat-icon>
+        <h4 class="ha">favorites</h4>
+      </mat-list-item>
+    </mat-list>
+  </div>
+<div class="main">
+    <div class="searchpane">
+<span><input type="text" [(ngModel)]="addCity"  placeholder= "Search location" font-weight="900" style="font-family:Arial, FontAwesome"
+    (keyup.enter)="searchCity($event)" class="input">
+  <!-- <button (click)="searchCity()" class="bt">search</button> -->
+</span>
+
+ </div>
+    <div class="todaysweather">
+   <mat-card class="tod">
+<mat-card-content  *ngIf="todaysWeather">
+<ngx-spinner bdColor="rgba(52, 62, 89, 0)" size="large" color="#ffffff" type="ball-clip-rotate-pulse"> </ngx-spinner>
+  <div><span><img src="http://openweathermap.org/img/w/{{todaysWeather.weather.icon}}.png"></span></div>
+  <div><h2>{{ todaysWeather.name}},  {{ todaysWeather.sys.country}}</h2></div>
+  <div>
+    <h1 style=font-size:60px>{{ todaysWeather.main.temp}}°</h1>
+  </div>
+  <div><h3  >{{ todaysWeather.weather.main}}</h3></div>
+  </mat-card-content>
+</mat-card>
+<mat-card class="tod">
+<ngx-spinner bdColor="rgba(52, 62, 89, 0)" size="large" color="#ffffff" type="ball-clip-rotate-pulse"> </ngx-spinner>
+
+  <mat-card-content  *ngIf="todaysWeather">
+    <div style=margin-top:60px;><span>Feels like </span>{{ todaysWeather.main.temp_max}}°</div>
+    <div style=margin-top:12px;><span>Wind: NW </span>{{ todaysWeather.win.speed}} km/hr </div>
+    <div style=margin-top:12px;><span>Visibility: </span>{{ todaysWeather.vis}} meters</div>
+    <div style=margin-top:12px;><span>Sunrise: </span>{{ todaysWeather.sys.sunrise | date:'shortTime'}}</div>
+    <div style=margin-top:12px;><span>Sunset: </span>{{ todaysWeather.sys.sunset | date:'shortTime'}}</div>
+
+
+  </mat-card-content>
+</mat-card>
+<mat-card class="tod">
+<ngx-spinner bdColor="rgba(52, 62, 89, 0)" size="large" color="#ffffff" type="ball-clip-rotate-pulse"> </ngx-spinner>
+
+    <mat-card-content  *ngIf="todaysWeather">
+        <div style=margin-top:50px;><h2>Suggestion</h2>
+</div>
+
+    <div><span>{{suggestion}}</span></div>
+  </mat-card-content>
+</mat-card>
+
+
+    </div>
+<mat-tab-group class="tabs">
+<mat-tab>
+<ng-template mat-tab-label>
+  <mat-icon class="tabs"></mat-icon>
+  <h4 class="tabsh">Day wise forecast</h4>
+</ng-template>
+  <div class="todayforecast">
+    <mat-card class="todforecast" *ngFor="let weather of todayforecast ">
+      <ngx-spinner bdColor="rgba(52, 62, 89, 0)" size="large" color="#ffffff" type="la-ball-circus"> </ngx-spinner>
+
+      <mat-card-content>
+        <div>{{ weather.dt_txt | date:'shortTime'}}</div>
+        <div class="icon"><img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></div>
+        <div>
+          <h3>{{ weather.main.temp}}°C </h3>
+        </div>
+        <div><span>Condition: </span>{{weather.weather[0].main}}</div>
+        <div><span>Description: </span>{{weather.weather[0].description}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-tab>
+<mat-tab > 
+<ng-template mat-tab-label>
+  <mat-icon class="example-tab-icon"></mat-icon>
+<h4 class="tabsh">Weekly forecast</h4>
+</ng-template>
+<div *ngIf="weatherForecast" class="forerow">
+  <mat-card class="forecast" *ngFor="let weather of weatherForecast ">
+    <mat-card-content>
+      <div>{{ weather.dt_txt |date :'EEEE'}}</div>
+      <div class="icon"><img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></div>
+      <div>
+        <h3>{{ weather.main.temp}}°C </h3>
+      </div>
+      <div><span>Condition: </span>{{weather.weather[0].main}}</div>
+      <div><span>Description: </span>{{weather.weather[0].description}}</div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</mat-tab>
+  <mat-tab>
+<ng-template mat-tab-label >
+  <mat-icon class="tabs">star</mat-icon>
+<h4 class="tabsh">Add to favorites</h4>
+</ng-template>
+<div class="cardform">
+<mat-card class="form">
+<mat-card-content>
+  <ngx-spinner bdColor="rgba(52, 62, 89, 0)" size="large" color="#ffffff" type="ball-clip-rotate-pulse"> </ngx-spinner>
+
+    <form  [formGroup]="actmoodform" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Activity</label>
+    <input class="form-control" formControlName="activity" required>
+        <label>Mood</label>
+    <input class="form-control" formControlName="mood" required>
+    <label>Weather</label>
+    <select class="form-control" formControlName="weather" required>
+        <option >Rainy</option>
+        <option>Cloudy</option>
+        <option>Sunny</option>
+        <option>Storm</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="primary">submit</button>
+  </div>
+</form>
+</mat-card-content>
+</mat-card>
+</div>
+</mat-tab>
+<mat-tab>
+<ng-template mat-tab-label >
+  <mat-icon class="tabs">star</mat-icon>
+<h4 class="tabsh">Favorites</h4>
+</ng-template>
+<mat-list>
+  <mat-list-item class="actmoods" *ngFor="let feed of feeds.slice().reverse() ; index as i">
+    <img matListAvatar src="..." alt="...">
+    <h3 matLine>Weather: {{feed.weather}} </h3>
+    <p matLine>
+      <span>Mood: {{feed.mood}} </span>
+    </p>
+    <p matLine>
+      <span>Activity: {{feed.activity}} </span>
+    </p>
+  </mat-list-item>
+</mat-list>
+
+</mat-tab>
+
+</mat-tab-group>
+
+
+
+    <!-- <div><h3>Day wise forecast</h3></div> -->
+ 
+
+</div>
+
+
+
+
+
+<!-- <div class="main-div">
+  <mat-card class="today">
+    <mat-card-header class="todayHead">
+      <mat-card-title>
+        <h2>Today</h2>
+      </mat-card-title>
+      <mat-card-subtitle>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="todaysWeather" class="todayswather">
+     <ngx-spinner bdColor="rgba(11, 45, 58, 0.82)"
+                  size="large"
+                  color="#ffffff"
+                  type="ball-clip-rotate-pulse"
+> </ngx-spinner>
+      <div><span>City: </span>{{ todaysWeather.name}}</div>
+      <div><span><img src="http://openweathermap.org/img/w/{{todaysWeather.weather.icon}}.png"></span></div>
+      <div>
+        <h2>{{ todaysWeather.temp}}°C</h2>
+      </div>
+      <div><span>Condition:</span>{{ todaysWeather.weather.main}}</div>
+      <div><span>Description: </span>{{ todaysWeather.weather.description}} </div>
+
+      <div><span>Suggestion:: {{suggestion}}
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="actmood">
+    <mat-card-content *ngIf="todaysWeather" class="todayswather">
+    </mat-card-content> -->
+  <!-- </mat-card>
+</div>
+<div *ngIf="weatherForecast" class="forerow">
+  <h2 class="fh">Forecast</h2>
+  <mat-card class="forecast" *ngFor="let weather of weatherForecast ">
+    <mat-card-content>
+<div>{{ weather.dt_txt |date :'EEEE'}}</div>
+      <div class="icon"><img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></div>
+      <div>
+        <h3>{{ weather.main.temp}}°C </h3>
+      </div>
+      <div><span>Condition: </span>{{weather.weather[0].main}}</div>
+      <div><span>Description: </span>{{weather.weather[0].description}}</div>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+<!-- <form [formGroup]="actmoodform" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Activity</label>
+    <input class="form-control" formControlName="activity">
+    <label>Mood</label>
+    <input class="form-control" formControlName="mood">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="primary">submit</button>
+  </div>
+</form>
+<div>
+  <h2 class="fh">activitymoodsfeeds</h2>
+<mat-card class="forecast" *ngFor="let feed of feeds; index as i">
+    <mat-card-content>
+            <mat-chip-list>
+        <div>
+          <mat-chip color="primary"> {{ feed.activity }}</mat-chip>
+        </div>
+        <div>
+          <mat-chip color="accent"> {{ feed.mood}}</mat-chip>
+        </div>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+

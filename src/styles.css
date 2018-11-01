@@ -1,1 +1,142 @@
-/* You can add global styles to this file, and also import other style files */
+/* @import '~@angular/material/theming'; */
+html, body { 
+  height: 100%; 
+  /*background-color:#314360;*/
+  background-image:url("./assets/images/bg.jpg")
+ /* background-color:#3991AC; */
+
+}
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+
+.main {
+  background-color: rgba(52, 62, 89, 0.918);
+
+  width: 84%;
+    height: 100%;
+}
+.matlist {
+  color:aliceblue;
+}
+
+
+@media (min-width: 300px) {
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+
+}
+.nav {
+
+  width: 16%;
+  height: 100%;
+    box-shadow: 10px 10px 8px #02111d;
+
+  background-color: rgba(11, 16, 29, 0.897);
+  box-shadow: -38px -14px 64px 10px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: -38px -14px 64px 10px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: -38px -14px 64px 10px rgba(0, 0, 0, 0.75) inset;
+}
+  /* .container */
+  /* .nav.main.matlist.ha.searchpane .tod */
+  
+}
+.mat-list-icon {
+  color: #ffffff;
+}
+.ha{
+    color: #ffffff;
+}
+.searchpane{
+  margin-left: 40%;
+  margin-right: 60%;
+  margin-top: 5px;
+   box-shadow: none !important;
+}
+mat-grid-tile {
+ background-color: rgba(52, 62, 89, 0);
+}
+.todaysweather{
+      display: flex;
+
+}
+.tod{
+   background-color: rgba(52, 62, 89, 0);
+   /* float:left; */
+   width: 28%;
+   color:white;
+   box-shadow: none !important;
+            justify-content: flex-start;
+
+}
+.temp{
+  float: inherit;
+}
+.todin{
+  height:10px;
+}
+.todforecast{
+   background-color: rgba(52, 62, 89, 0);
+   /* float:left; */
+   color:white;
+        justify-content: space-between;
+
+   /* box-shadow: none !important; */
+   /* justify-content: flex-start; */
+}
+.todayforecast{
+     display:flex;
+     justify-content: space-between;;
+
+}
+.input{
+  /* background-color: rgba(34, 44, 71, 0.897); */
+     box-shadow: none !important;
+     margin: 0px;
+      border-radius: 22px 22px 22px 22px;
+      -moz-border-radius: 22px 22px 22px 22px;
+      -webkit-border-radius: 22px 22px 22px 22px;
+
+}
+.favbt{
+     background-color: rgba(24, 33, 56, 0.897);
+
+  border-radius: 22px 22px 22px 22px;
+  -moz-border-radius: 22px 22px 22px 22px;
+  -webkit-border-radius: 22px 22px 22px 22px;
+}
+.tabs{
+  color: #ffffff;
+}
+.forerow{
+     display: flex;
+}
+.forecast{
+   background-color: rgba(52, 62, 89, 0);
+   /* float:left; */
+   color:white;
+   display: flex;
+   justify-content: space-between;
+}
+.tabsh{
+  color: #ffffff;
+}
+.cardform{
+  display: flex;
+}
+.form{
+   background-color: rgba(52, 62, 89, 0);
+   /* float:left; */
+   color:white;
+   display: flex;
+}
+.actmoods{
+  float: left;
+  color: white;
+}
+p, h3,img{
+    color: white;
+
+}

@@ -1,0 +1,38 @@
+ <div class="container">
+  <div class="nav">
+    <mat-list class="matlist">
+      <mat-list-item>
+        <mat-icon mat-list-icon>back</mat-icon>
+        <a class="ha" routerLink=""><img src="../../assets/images/back.png" alt="weather map"></a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>map</mat-icon>
+        <a class="ha" routerLink="./weather-map">Maps</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>favorites</mat-icon>
+        <h4 class="ha">Favorites</h4>
+      </mat-list-item>
+    </mat-list>
+  </div>
+<div class="main">
+    <div class="map">
+
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+
+    <agm-marker *ngFor="let m of getServ" [latitude]="m.coord.Lat" [longitude]="m.coord.Lon">
+
+      <agm-info-window class="info">
+        <div><span>city: </span>{{m.name}}</div>
+        <img src="http://openweathermap.org/img/w/{{m.weather[0].icon}}.png">
+        <div><span>Temp: </span>
+          <h3> {{m.main.temp}} </h3>
+        </div>
+      </agm-info-window>
+
+    </agm-marker>
+  </agm-map>
+
+
+</div>
+</div> 

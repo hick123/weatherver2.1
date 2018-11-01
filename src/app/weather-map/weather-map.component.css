@@ -1,0 +1,31 @@
+agm-map {
+  text-align: center;
+  height: 600px;
+  width: 1350px; 
+}
+.info{
+  background-color: #000000;
+}
+.map{
+  margin-top:5px;
+  margin-left: 50px;
+  margin-right: 50px;
+   background-color:rgba(11, 45, 58, 0.644);
+   border-radius: 22px 22px 22px 22px;
+   -moz-border-radius: 22px 22px 22px 22px;
+   -webkit-border-radius: 22px 22px 22px 22px;
+   border: 0px solid #000000;
+   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* .toolbar {
+  justify-content: space-between;
+} */
+
+.matTool {
+  background-color: rgba(11, 45, 58, 0.795);
+}
+.p{
+  color: floralwhite;
+}

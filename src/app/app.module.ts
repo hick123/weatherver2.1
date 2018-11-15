@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+
 import {HttpModule} from '@angular/http'
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AgmCoreModule } from "@agm/core";
@@ -24,11 +25,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TimelineComponent } from './timeline/timeline.component';
-import { FavoritesComponent } from './favorites/favorites.component';
+
+//auth
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, WeatherComponent, WeatherMapComponent, TimelineComponent, FavoritesComponent],
+  declarations: [AppComponent, WeatherComponent, WeatherMapComponent,  LoginComponent, RegisterComponent],
   imports: [
     BrowserModule, CommonModule, AgmCoreModule, BrowserAnimationsModule,    BrowserAnimationsModule,MatChipsModule,
     HttpClientModule, MatToolbarModule,MatInputModule, MatButtonModule, MatSidenavModule,  MatGridListModule,
@@ -38,7 +42,9 @@ import { FavoritesComponent } from './favorites/favorites.component';
     NgProgressRouterModule, ReactiveFormsModule, MatSelectModule, MatTableModule, FlexLayoutModule, MatDialogModule
 
   ],
-  providers: [WeatherService],
+  providers: [WeatherService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

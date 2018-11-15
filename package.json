@@ -36,6 +36,8 @@
     "ng4-loading-spinner": "^1.2.3",
     "ngx-spinner": "^6.1.2",
     "rxjs": "^6.0.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^7.28.11",
     "typescript": "^2.9.2",
     "zone.js": "~0.8.26"
   },

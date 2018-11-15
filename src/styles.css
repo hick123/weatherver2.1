@@ -46,8 +46,14 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .mat-list-icon {
   color: #ffffff;
 }
+.ha {
+  color: #ffffff;
+}
+@media (max-width: 530px) {
 .ha{
     color: #ffffff;
+    display:none;
+}
 }
 .searchpane{
   margin-left: 40%;

@@ -85,6 +85,14 @@ box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   align-items: center;
   margin: 3px;
 }
+.logout{
+  color:white;
+}
+@media (max-width: 715px) {
+  .logout {
+    display: none;
+  }
+}
 /* .bt{
    background-color:#05416C;
    color: rgb(253, 253, 253);

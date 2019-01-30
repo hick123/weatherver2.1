@@ -109,22 +109,22 @@ export class WeatherComponent implements OnInit {
      );         
 }
 
-//   onSubmit(){
-//     // submits weather mood and activity to mongodb
-//     this.spinner.show();
-//     this.submitted = true;
-//     this.activitymood=this.actmoodform.value;
-//     this.dataService.postActivitymood(this.activitymood).subscribe(data=>{
-//       console.log("POST Request is successful ", data);
+  onSubmit(){
+    // submits weather mood and activity to mongodb
+    this.spinner.show();
+    this.submitted = true;
+    this.activitymood=this.actmoodform.value;
+    this.dataService.postActivitymood(this.activitymood).subscribe(data=>{
+      console.log("POST Request is successful ", data);
 
 
-//       swal("Good job!", "Submitted successfully", "success")
+      swal("Good job!", "Submitted successfully", "success")
 
 
-// })
-//     console.log('form value',this.actmoodform.value);
-//     this.spinner.hide();
-//   }
+})
+    console.log('form value',this.actmoodform.value);
+    this.spinner.hide();
+  }
   searchCity() {
     // search different cities
     this.spinner.show();

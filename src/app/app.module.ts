@@ -30,9 +30,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+
 
 @NgModule({
-  declarations: [AppComponent, WeatherComponent, WeatherMapComponent,  LoginComponent, RegisterComponent],
+  declarations: [AppComponent, WeatherComponent, WeatherMapComponent,  LoginComponent, RegisterComponent, FavoriteComponent],
   imports: [
     BrowserModule, CommonModule, AgmCoreModule, BrowserAnimationsModule,    BrowserAnimationsModule,MatChipsModule,
     HttpClientModule, MatToolbarModule,MatInputModule, MatButtonModule, MatSidenavModule,  MatGridListModule,
@@ -45,6 +47,8 @@ import { RegisterComponent } from './register/register.component';
   providers: [WeatherService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FavoriteComponent]
+  
 })
 export class AppModule {}

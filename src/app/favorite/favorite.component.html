@@ -1,0 +1,22 @@
+<form  [formGroup]="actmoodform" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Activity</label>
+    <input class="form-control" formControlName="activity" required>
+        <label>Mood</label>
+    <input class="form-control" formControlName="mood" required>
+    <label>Weather</label>
+    <select class="form-control" formControlName="weather" required>
+        <option >Rainy</option>
+        <option>Cloudy</option>
+        <option>Sunny</option>
+        <option>Storm</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+<button mat-stroked-button color="red" (click)="save()">save</button>
+                  <button mat-stroked-button color="red"  (click)="close()">close</button>
+
+
+  </div>
+</form>

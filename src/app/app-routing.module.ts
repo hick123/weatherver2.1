@@ -11,9 +11,12 @@ const routes: Routes = [
   // { path: "", component: WeatherComponent },
   // { path: "weather-map", component: WeatherMapComponent }
   // ];
-  { path: '', component: WeatherComponent, canActivate: [AuthGuard] },
+  { path: '', component: WeatherComponent },
+    // { path: '', component: WeatherComponent, canActivate: [AuthGuard] },
+
   { path: 'login', component: LoginComponent },
   { path: 'weather-map', component: WeatherMapComponent, canActivate: [AuthGuard] },
+  // { path: 'weather-map', component: WeatherMapComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },
 
   // otherwise redirect to home

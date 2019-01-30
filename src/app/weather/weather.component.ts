@@ -4,9 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService} from '../weather.service'
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
-
+import { FavoriteComponent} from '../favorite/favorite.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+
 
 declare var swal: any;
 
@@ -35,12 +37,14 @@ export class WeatherComponent implements OnInit {
   });
   submitted = false;
   activitymood = new ActivityMood('','','');
-  constructor(// initialize services
+  constructor(
+    // initialize services
     public weatherService: WeatherService,
     private spinner: NgxSpinnerService,
     private authenticationService: AuthenticationService,
     public dataService:DataserviceService,
         private router: Router,
+        private dialog: MatDialog
 
     ) {}
   ngOnInit(): any {
@@ -78,22 +82,49 @@ export class WeatherComponent implements OnInit {
       })
     });
   }
-  onSubmit(){
-    // submits weather mood and activity to mongodb
-    this.spinner.show();
-    this.submitted = true;
-    this.activitymood=this.actmoodform.value;
-    this.dataService.postActivitymood(this.activitymood).subscribe(data=>{
-      console.log("POST Request is successful ", data);
+  openDialog() {
+
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;      
+       this.dialog.open(FavoriteComponent, dialogConfig);
+
+        const dialogRef = this.dialog.open(FavoriteComponent, dialogConfig);
+
+         dialogRef.afterClosed().subscribe(
+         data => 
+         
+         {console.log("Dialog output:", data)
+         this.activitymood=data;
+
+           this.dataService.postActivitymood(this.activitymood).subscribe(data =>
+            
+            {
+             console.log("POST Request is successful ", data);
+            //  swal("Good job!", "Submitted successfully", "success")             
+            }
+           );
+         }
+     );         
+}
+
+//   onSubmit(){
+//     // submits weather mood and activity to mongodb
+//     this.spinner.show();
+//     this.submitted = true;
+//     this.activitymood=this.actmoodform.value;
+//     this.dataService.postActivitymood(this.activitymood).subscribe(data=>{
+//       console.log("POST Request is successful ", data);
 
 
-      swal("Good job!", "Submitted successfully", "success")
+//       swal("Good job!", "Submitted successfully", "success")
 
 
-})
-    console.log('form value',this.actmoodform.value);
-    this.spinner.hide();
-  }
+// })
+//     console.log('form value',this.actmoodform.value);
+//     this.spinner.hide();
+//   }
   searchCity() {
     // search different cities
     this.spinner.show();
@@ -129,11 +160,11 @@ export class WeatherComponent implements OnInit {
         // this.actmoodfeeds = data;
         
    },(error)=>{
-       swal({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Could not your moods and activities',
-      })
+      //  swal({
+      //   type: 'error',
+      //   title: 'Oops...',
+      //   text: 'Could not your moods and activities',
+      // })
    });
   }
    logout() {
